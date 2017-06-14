@@ -28,16 +28,13 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
-    }
-
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
+        return mFragmentTittleList.size();
     }
 
     public void addFragment(Fragment fragment, String tittle) {
-        mFragmentTittleList.add(tittle);
+
         mFragmentList.add(fragment);
+        mFragmentTittleList.add(tittle);
+        notifyDataSetChanged();
     }
 }

@@ -28,11 +28,12 @@ public class FragmentMain extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_main, container);
+        View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_tasks);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
         RecyclerView.Adapter adapter = new RecyclerAdapter(task, timeBefore, time);
         recyclerView.setAdapter(adapter);
         return v;

@@ -18,23 +18,21 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <android.support.v4.view.ViewPager
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/view_pager_m">
 
         <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/tab_layout">
+            android:layout_height="wrap_content"
+            android:id="@+id/tab_layout"/>
+        <!--app:tabMode="fixed" -->
 
-        </android.support.design.widget.TabLayout>
-
-            </android.support.v4.view.ViewPager>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+
+
+
+
+     <include layout="@layout/content_main" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
 
+
         pagerAdapter.addFragment(new FragmentMain(), "Task");
         pagerAdapter.addFragment(new FragmentCalendar(), "Calendar");
         pagerAdapter.addFragment(new FragmentSomething(), "Something");
