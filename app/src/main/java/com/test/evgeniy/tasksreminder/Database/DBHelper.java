@@ -7,9 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.test.evgeniy.tasksreminder.Model.ModelTask;
 
-/**
- * Created by Evgeniy on 13.06.2017.
- */
+
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "reminder_database";
@@ -20,6 +18,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TASK_STATUS_COLUMN = "task_status";
     private static final String TASKS_TABLE_CREATE_SCRIPT = "CREATE TABLE " + TASKS_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             TASK_TITLE_COLUMN + " TEXT NOT NULL, " + TASK_DATE_COLUMN + " LONG, " + TASK_STATUS_COLUMN + " INTEGER);";
+
+    QueryManager queryManager = new QueryManager(getReadableDatabase());
+    UpdateManager updateManager = new UpdateManager(getWritableDatabase());
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,9 +37,17 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public QueryManager getQueryManager() {
+        return this.queryManager;
+    }
+
+    public UpdateManager getUpdateManager() {
+        return this.updateManager;
+    }
+
     public void saveTask(ModelTask modelTask) {
         ContentValues cv = new ContentValues();
-        cv.put(TASK_TITLE_COLUMN, modelTask.getDate());
+        cv.put(TASK_TITLE_COLUMN, modelTask.getTitle());
         cv.put(TASK_DATE_COLUMN, modelTask.getDate());   // Not that how telephone
         cv.put(TASK_STATUS_COLUMN, modelTask.getStatus()); // Not that how telephone
         getWritableDatabase().insert(TASKS_TABLE, null, cv);

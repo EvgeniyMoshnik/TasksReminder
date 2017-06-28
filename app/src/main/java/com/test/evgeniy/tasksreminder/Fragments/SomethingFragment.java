@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.test.evgeniy.tasksreminder.R;
 
 
-public class FragmentSomething extends Fragment {
+public class SomethingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -3,6 +3,7 @@ package com.test.evgeniy.tasksreminder;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,12 +16,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.test.evgeniy.tasksreminder.Adapters.PagerAdapter;
-import com.test.evgeniy.tasksreminder.Fragments.FragmentCalendar;
-import com.test.evgeniy.tasksreminder.Fragments.FragmentMain;
-import com.test.evgeniy.tasksreminder.Fragments.FragmentSomething;
+import com.test.evgeniy.tasksreminder.Fragments.CalendarFragment;
+import com.test.evgeniy.tasksreminder.Fragments.MainFragment;
+import com.test.evgeniy.tasksreminder.Fragments.SomethingFragment;
+import com.test.evgeniy.tasksreminder.Fragments.SplashFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +37,17 @@ public class MainActivity extends AppCompatActivity
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(pager);
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+        fragmentManager = getSupportFragmentManager();
+        PagerAdapter pagerAdapter = new PagerAdapter(fragmentManager);
         pager.setAdapter(pagerAdapter);
 
 
-        pagerAdapter.addFragment(new FragmentMain(), "Task");
-        pagerAdapter.addFragment(new FragmentCalendar(), "Calendar");
-        pagerAdapter.addFragment(new FragmentSomething(), "Something");
+        pagerAdapter.addFragment(new MainFragment(), "Task");
+        pagerAdapter.addFragment(new CalendarFragment(), "Calendar");
+        pagerAdapter.addFragment(new SomethingFragment(), "Something");
+
+
+        startSplash();
 
 
 
@@ -66,6 +74,14 @@ public class MainActivity extends AppCompatActivity
 
     public void addTask(String task, String timeBefore, String time) {
 
+    }
+
+    public void startSplash() {
+        SplashFragment splashFragment = new SplashFragment();
+        fragmentManager.beginTransaction()
+                .add(R.id.container, splashFragment, "splash")
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override

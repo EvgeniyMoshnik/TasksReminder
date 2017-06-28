@@ -13,7 +13,7 @@ import com.test.evgeniy.tasksreminder.Adapters.RecyclerAdapter;
 import com.test.evgeniy.tasksreminder.R;
 
 
-public class FragmentMain extends Fragment {
+public class MainFragment extends Fragment {
 
     String[] task = {"Bread", "Shower", "Study"};
     String[] timeBefore = {"33-22", "22-11", "90-22"};

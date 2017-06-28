@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.test.evgeniy.tasksreminder.R;
 
 
-public class FragmentCalendar extends Fragment {
+public class CalendarFragment extends Fragment {
 
     @Nullable
     @Override

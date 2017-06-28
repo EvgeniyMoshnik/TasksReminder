@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/container_content1"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.test.evgeniy.tasksreminder.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/colorAccent"
-        android:id="@+id/view_pager_m">
+        android:background="@color/colorAccent">
 
     </android.support.v4.view.ViewPager>
 
