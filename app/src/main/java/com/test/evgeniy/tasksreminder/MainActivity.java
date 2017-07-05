@@ -25,11 +25,17 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FragmentManager fragmentManager;
+    PreferenceHelper preferenceHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PreferenceHelper.getInstance().init(getApplicationContext());
+        preferenceHelper = PreferenceHelper.getInstance();
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -77,12 +83,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void startSplash() {
-        SplashFragment splashFragment = new SplashFragment();
-        fragmentManager.beginTransaction()
-                .add(R.id.container, splashFragment, "splash")
-                .addToBackStack(null)
-                .commit();
+        if (!preferenceHelper.getBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE)) {
+            SplashFragment splashFragment = new SplashFragment();
+            fragmentManager.beginTransaction()
+                    .add(R.id.container, splashFragment, "splash")
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
+
+
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -98,6 +111,8 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem splashItem = menu.findItem(R.id.splash_settings);
+        splashItem.setChecked(preferenceHelper.getBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE));
         return true;
     }
 
@@ -109,7 +124,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.splash_settings) {
+            item.setChecked(!item.isChecked());
+            preferenceHelper.putBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE, item.isChecked());
             return true;
         }
 
