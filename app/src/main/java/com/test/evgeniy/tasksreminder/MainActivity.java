@@ -15,7 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.test.evgeniy.tasksreminder.Adapters.PagerAdapter;
+import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
 import com.test.evgeniy.tasksreminder.Fragments.CalendarFragment;
 import com.test.evgeniy.tasksreminder.Fragments.MainFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SomethingFragment;
@@ -36,21 +36,26 @@ public class MainActivity extends AppCompatActivity
         preferenceHelper = PreferenceHelper.getInstance();
 
 
+        //set UI
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        if (toolbar != null) {
+            toolbar.setTitleTextColor(getResources().getColor(R.color.colorText));
+            setSupportActionBar(toolbar);
+        }
+
 
         ViewPager pager = (ViewPager) findViewById(R.id.view_pager_m);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(pager);
         fragmentManager = getSupportFragmentManager();
-        PagerAdapter pagerAdapter = new PagerAdapter(fragmentManager);
+        PagerTabAdapter pagerAdapter = new PagerTabAdapter(fragmentManager);
         pager.setAdapter(pagerAdapter);
 
 
-        pagerAdapter.addFragment(new MainFragment(), "Task");
-        pagerAdapter.addFragment(new CalendarFragment(), "Calendar");
-        pagerAdapter.addFragment(new SomethingFragment(), "Something");
+        pagerAdapter.addFragment(new MainFragment(), getResources().getText(R.string.tab_task).toString());
+        pagerAdapter.addFragment(new CalendarFragment(), getResources().getText(R.string.tab_calendar).toString());
+        pagerAdapter.addFragment(new SomethingFragment(), getResources().getText(R.string.tab_something).toString());
 
 
         startSplash();
@@ -86,7 +91,7 @@ public class MainActivity extends AppCompatActivity
         if (!preferenceHelper.getBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE)) {
             SplashFragment splashFragment = new SplashFragment();
             fragmentManager.beginTransaction()
-                    .add(R.id.container, splashFragment, "splash")
+                    .add(R.id.frame_container, splashFragment, "splash")
                     .addToBackStack(null)
                     .commit();
         }

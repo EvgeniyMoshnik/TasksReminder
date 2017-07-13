@@ -43,8 +43,11 @@ public class SplashFragment extends Fragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            fragmentManager = getActivity().getFragmentManager();
-            fragmentManager.popBackStack();
+
+            if (getActivity() != null) {
+                fragmentManager = getActivity().getFragmentManager();
+                fragmentManager.popBackStack();
+            }
 
 
            // fragmentManager.beginTransaction()

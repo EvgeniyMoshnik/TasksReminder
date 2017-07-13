@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PagerAdapter extends FragmentPagerAdapter {
+public class PagerTabAdapter extends FragmentPagerAdapter {
     private List<String> mFragmentTittleList = new ArrayList<>();
     private List<Fragment> mFragmentList = new ArrayList<>();
 
-    public PagerAdapter(FragmentManager fm) {
+    public PagerTabAdapter(FragmentManager fm) {
         super(fm);
     }
 
