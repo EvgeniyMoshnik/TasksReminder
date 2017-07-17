@@ -15,9 +15,9 @@ import com.test.evgeniy.tasksreminder.R;
 
 public class MainFragment extends Fragment {
 
-    String[] task = {"Bread", "Shower", "Study"};
-    String[] timeBefore = {"33-22", "22-11", "90-22"};
-    String[] time = {"0401", "5544", "9992"};
+    String[] task = {"Bread", "Shower", "Study","Bread", "Shower", "Study","Bread", "Shower", "Study","Bread", "Shower", "Study"};
+    String[] timeBefore = {"33-22", "22-11", "90-22","33-22", "22-11", "90-22","33-22", "22-11", "90-22","33-22", "22-11", "90-22"};
+    String[] time = {"0401", "5544", "9992","0401", "5544", "9992","0401", "5544", "9992","0401", "5544", "9992"};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
