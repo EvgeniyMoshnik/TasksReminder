@@ -1,32 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
 
-    <EditText
-        android:id="@+id/editText_dialogTask"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/enter_task" />
+        android:id="@+id/dialogTaskTitle"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
-    <EditText
-        android:id="@+id/editText_dialogTime"
-        android:layout_width="match_parent"
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="time"
-        android:hint="@string/enter_time"/>
+        android:id="@+id/dialogTaskDate"
+        android:layout_below="@+id/dialogTaskTitle"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
-    <EditText
-        android:id="@+id/editText_dialogDate"
-        android:layout_width="match_parent"
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:inputType="none"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        android:hint="@string/enter_date"/>
+        android:id="@+id/dialogTaskTime"
+        android:layout_marginTop="16dp"
+
+        android:layout_below="@+id/dialogTaskTitle"
+        android:layout_alignRight="@+id/dialogTaskTitle"
+        tools:ignore="RtlHardcoded">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:inputType="none"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            />
+
+    </android.support.design.widget.TextInputLayout>
 
 
-</LinearLayout>
+
+
+</RelativeLayout>
