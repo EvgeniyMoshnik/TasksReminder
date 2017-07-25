@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
+import com.test.evgeniy.tasksreminder.Dialogs.DialogCreateTask;
 import com.test.evgeniy.tasksreminder.Fragments.CalendarFragment;
 import com.test.evgeniy.tasksreminder.Fragments.MainFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SomethingFragment;

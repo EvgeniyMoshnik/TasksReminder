@@ -20,13 +20,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         TextView mTvTasks;
         TextView mTvTimeBefore;
-        TextView mTvTime;
+      //  TextView mTvTime;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mTvTasks = (TextView) itemView.findViewById(R.id.checkedTextView_task);
             mTvTimeBefore = (TextView) itemView.findViewById(R.id.tv_time_before);
-            mTvTime = (TextView) itemView.findViewById(R.id.tv_time_task);
+           // mTvTime = (TextView) itemView.findViewById(R.id.tv_time_task);
         }
     }
 
@@ -47,7 +47,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         holder.mTvTasks.setText(mDatasetTasks[position]);
         holder.mTvTimeBefore.setText(mDatasetTimeBefore[position]);
-        holder.mTvTime.setText(mDatasetTime[position]);
+       // holder.mTvTime.setText(mDatasetTime[position]);
     }
 
     @Override
