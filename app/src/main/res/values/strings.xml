@@ -10,9 +10,12 @@
     <string name="enter_time">Enter time</string>
     <string name="enter_date">Enter date</string>
 
+    <!-- dialog -->
     <string name="tittle_dialog">Create task</string>
     <string name="positive_button">Create</string>
     <string name="negative_button">Cancel</string>
+    <string name="error_dialog">Please, enter the title</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

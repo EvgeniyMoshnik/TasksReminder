@@ -2,7 +2,7 @@ package com.test.evgeniy.tasksreminder.Model;
 
 
 
-public class ModelTask {
+public class ModelTask implements Item {
 
     public static final int STATUS_CURENT = 1;
     public static final int STATUS_DONE = 2;
@@ -10,12 +10,13 @@ public class ModelTask {
 
     private String title;
     private long date;
-    private int status;
 
-    public ModelTask(String title, long date, int status) {
+    public ModelTask() {
+    }
+
+    public ModelTask(String title, long date) {
         this.title = title;
         this.date = date;
-        this.status = status;
     }
 
     public String getTitle() {
@@ -34,11 +35,8 @@ public class ModelTask {
         this.date = date;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
+    @Override
+    public boolean isTask() {
+        return true;
     }
 }

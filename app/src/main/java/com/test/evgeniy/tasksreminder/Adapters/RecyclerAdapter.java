@@ -18,22 +18,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mTvTasks;
-        TextView mTvTimeBefore;
+     //   TextView mTvTasks;
+      //  TextView mTvTimeBefore;
       //  TextView mTvTime;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTvTasks = (TextView) itemView.findViewById(R.id.checkedTextView_task);
-            mTvTimeBefore = (TextView) itemView.findViewById(R.id.tv_time_before);
+           // mTvTasks = (TextView) itemView.findViewById(R.id.checkedTextView_task);
+           // mTvTimeBefore = (TextView) itemView.findViewById(R.id.tv_time_before);
            // mTvTime = (TextView) itemView.findViewById(R.id.tv_time_task);
         }
     }
 
     public RecyclerAdapter(String[] DatasetTasks, String[] DatasetTimeBefore, String[] DatasetTime) {
-        mDatasetTasks = DatasetTasks;
-        mDatasetTimeBefore = DatasetTimeBefore;
-        mDatasetTime = DatasetTime;
+      //  mDatasetTasks = DatasetTasks;
+       // mDatasetTimeBefore = DatasetTimeBefore;
+      //  mDatasetTime = DatasetTime;
     }
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -45,13 +45,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
 
-        holder.mTvTasks.setText(mDatasetTasks[position]);
-        holder.mTvTimeBefore.setText(mDatasetTimeBefore[position]);
+      //  holder.mTvTasks.setText(mDatasetTasks[position]);
+       // holder.mTvTimeBefore.setText(mDatasetTimeBefore[position]);
        // holder.mTvTime.setText(mDatasetTime[position]);
     }
 
     @Override
     public int getItemCount() {
-        return mDatasetTasks.length;
+        return 1 ;//mDatasetTasks.length;
     }
 }

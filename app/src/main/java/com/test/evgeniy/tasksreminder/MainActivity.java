@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
 import com.test.evgeniy.tasksreminder.Dialogs.DialogCreateTask;
@@ -23,7 +24,7 @@ import com.test.evgeniy.tasksreminder.Fragments.SomethingFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SplashFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DialogCreateTask.AddingTaskListener {
 
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
@@ -70,9 +71,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 DialogCreateTask dialogCreateTask = new DialogCreateTask();
-                dialogCreateTask.show(getSupportFragmentManager(), "tag_dialog");
+                dialogCreateTask.show(getFragmentManager(), "DialogCreateTask");
             }
         });
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -84,9 +87,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void addTask(String task, String timeBefore, String time) {
-
-    }
 
     public void startSplash() {
         if (!preferenceHelper.getBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE)) {
@@ -97,10 +97,6 @@ public class MainActivity extends AppCompatActivity
                     .commit();
         }
     }
-
-
-
-
 
 
     @Override
@@ -162,5 +158,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onTaskAdded() {
+        Toast.makeText(this, "Task added", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onTaskAddingCancel() {
+        Toast.makeText(this, "Task adding cancel", Toast.LENGTH_LONG).show();
     }
 }
