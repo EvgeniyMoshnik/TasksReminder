@@ -49,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(TASK_TITLE_COLUMN, modelTask.getTitle());
         cv.put(TASK_DATE_COLUMN, modelTask.getDate());   // Not that how telephone
-        cv.put(TASK_STATUS_COLUMN, modelTask.getStatus()); // Not that how telephone
+      //  cv.put(TASK_STATUS_COLUMN, modelTask.getStatus()); // Not that how telephone
         getWritableDatabase().insert(TASKS_TABLE, null, cv);
 
 

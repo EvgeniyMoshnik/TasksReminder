@@ -9,15 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.test.evgeniy.tasksreminder.Adapters.RecyclerAdapter;
+import com.test.evgeniy.tasksreminder.Adapters.CurrentTaskAdapter;
+import com.test.evgeniy.tasksreminder.Model.ModelTask;
 import com.test.evgeniy.tasksreminder.R;
 
 
 public class MainFragment extends Fragment {
 
-    String[] task = {"Bread", "Shower", "Study","Bread", "Shower", "Study","Bread", "Shower", "Study","Bread", "Shower", "Study"};
-    String[] timeBefore = {"33-22", "22-11", "90-22","33-22", "22-11", "90-22","33-22", "22-11", "90-22","33-22", "22-11", "90-22"};
-    String[] time = {"0401", "5544", "9992","0401", "5544", "9992","0401", "5544", "9992","0401", "5544", "9992"};
+    private RecyclerView rvCurrentTask;
+    private RecyclerView.LayoutManager layoutManager;
+    private CurrentTaskAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,12 +31,31 @@ public class MainFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_tasks);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        RecyclerView.Adapter adapter = new RecyclerAdapter(task, timeBefore, time);
-        recyclerView.setAdapter(adapter);
+        rvCurrentTask = (RecyclerView) v.findViewById(R.id.recycler_view_current_tasks);
+       // recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getContext());
+        rvCurrentTask.setLayoutManager(layoutManager);
+        adapter = new CurrentTaskAdapter();
+        rvCurrentTask.setAdapter(adapter);
         return v;
+    }
+
+    public void addTask(ModelTask newTask){
+        int position = -1;
+
+        for (int i = 0; i < adapter.getItemCount(); i++) {
+            if(adapter.getItem(i).isTask()) {
+                ModelTask task = (ModelTask) adapter.getItem(i);
+                if (newTask.getDate() < task.getDate()){
+                    position = i;
+                    break;
+                }
+            }
+        }
+        if (position != -1) {
+            adapter.addItem(position, newTask);
+        } else {
+            adapter.addItem(newTask);
+        }
     }
 }

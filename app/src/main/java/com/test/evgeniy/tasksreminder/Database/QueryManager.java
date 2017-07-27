@@ -20,7 +20,7 @@ public class QueryManager {
         ModelTask modelTask;
        // Cursor cursor = this.database.query(DBHelper.TASKS_TABLE, null, )
 
-        modelTask = new ModelTask("123", 21, 22);
+        modelTask = new ModelTask();
         return modelTask;
     }
 
@@ -32,7 +32,7 @@ public class QueryManager {
                 String title = cursor.getString(cursor.getColumnIndex(DBHelper.TASK_TITLE_COLUMN));
                 long date = cursor.getLong(cursor.getColumnIndex(DBHelper.TASK_DATE_COLUMN));
                 int status = cursor.getInt(cursor.getColumnIndex(DBHelper.TASK_STATUS_COLUMN));
-                tasks.add(new ModelTask(title, date, status));
+                tasks.add(new ModelTask());
             } while (cursor.moveToNext());
         }
         cursor.close();

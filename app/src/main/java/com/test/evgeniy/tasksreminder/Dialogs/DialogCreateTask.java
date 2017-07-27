@@ -31,7 +31,7 @@ public class DialogCreateTask extends DialogFragment {
     private AddingTaskListener addingTaskListener;
 
     public interface AddingTaskListener {
-        void onTaskAdded();
+        void onTaskAdded(ModelTask newTask);
         void onTaskAddingCancel();
     }
 
@@ -68,7 +68,7 @@ public class DialogCreateTask extends DialogFragment {
         tilTime.setHint(getResources().getString(R.string.task_time));
 
 
-        ModelTask modelTask = new ModelTask();
+        final ModelTask task = new ModelTask();
         final Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY) + 1);
 
@@ -79,8 +79,13 @@ public class DialogCreateTask extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        task.setTitle(etTitle.getText().toString());
+                        if (etDate.length() != 0 || etTime.length() != 0 ) {
+                            task.setDate(calendar.getTimeInMillis());
+                        }
+                        addingTaskListener.onTaskAdded(task);
                         dialog.dismiss();
-                        addingTaskListener.onTaskAdded();
+
 
                     }
                 })

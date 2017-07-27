@@ -22,12 +22,15 @@ import com.test.evgeniy.tasksreminder.Fragments.CalendarFragment;
 import com.test.evgeniy.tasksreminder.Fragments.MainFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SomethingFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SplashFragment;
+import com.test.evgeniy.tasksreminder.Model.ModelTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DialogCreateTask.AddingTaskListener {
 
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
+    MainFragment mainFragment;
+    PagerTabAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +54,13 @@ public class MainActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(pager);
         fragmentManager = getSupportFragmentManager();
-        PagerTabAdapter pagerAdapter = new PagerTabAdapter(fragmentManager);
+
+        pagerAdapter = new PagerTabAdapter(fragmentManager);
         pager.setAdapter(pagerAdapter);
 
 
-        pagerAdapter.addFragment(new MainFragment(), getResources().getText(R.string.tab_task).toString());
-        pagerAdapter.addFragment(new CalendarFragment(), getResources().getText(R.string.tab_calendar).toString());
-        pagerAdapter.addFragment(new SomethingFragment(), getResources().getText(R.string.tab_something).toString());
-
-
         startSplash();
-
-
-
+        addTabs();
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -96,6 +93,13 @@ public class MainActivity extends AppCompatActivity
                     .addToBackStack(null)
                     .commit();
         }
+    }
+
+    public void addTabs() {
+        mainFragment = new MainFragment();
+        pagerAdapter.addFragment(mainFragment, getResources().getString(R.string.tab_task));
+        pagerAdapter.addFragment(new CalendarFragment(), getResources().getString(R.string.tab_calendar));
+        pagerAdapter.addFragment(new SomethingFragment(), getResources().getString(R.string.tab_something));
     }
 
 
@@ -161,12 +165,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onTaskAdded() {
-        Toast.makeText(this, "Task added", Toast.LENGTH_LONG).show();
+    public void onTaskAdded(ModelTask newTask) {
+        mainFragment.addTask(newTask);
     }
 
     @Override
     public void onTaskAddingCancel() {
-        Toast.makeText(this, "Task adding cancel", Toast.LENGTH_LONG).show();
+
     }
 }
