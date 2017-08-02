@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.test.evgeniy.tasksreminder.Fragments.TaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.Utils;
 import com.test.evgeniy.tasksreminder.Model.Item;
 import com.test.evgeniy.tasksreminder.Model.ModelTask;
@@ -15,29 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CurrentTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CurrentTaskAdapter extends TaskAdapter {
 
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_SEPARATOR = 1;
-    private List<Item> items = new ArrayList<>();
 
-
-    public CurrentTaskAdapter() {
-
-    }
-
-    public Item getItem(int position){
-        return items.get(position);
-    }
-
-    public void addItem (Item item) {
-        items.add(item);
-        notifyItemInserted(getItemCount() - 1);
-    }
-
-    public void addItem(int location, Item item) {
-        items.add(location, item);
-        notifyItemInserted(location);
+    public CurrentTaskAdapter(TaskFragment taskFragment) {
+        super(taskFragment);
     }
 
     @Override
@@ -73,12 +58,6 @@ public class CurrentTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
     }
-
-    @Override
-    public int getItemCount() {
-        return items.size() ;
-    }
-
     @Override
     public int getItemViewType(int position) {
         if (getItem(position).isTask()){
@@ -88,16 +67,4 @@ public class CurrentTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    private class TaskViewHolder extends RecyclerView.ViewHolder {
-
-        TextView title;
-        TextView date;
-
-        private TaskViewHolder(View itemView, TextView title, TextView date) {
-            super(itemView);
-            this.title = title;
-            this.date = date;
-        }
-
-    }
 }
