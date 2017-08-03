@@ -24,7 +24,7 @@ public class PreferenceHelper {
         }
         return instance;
     }
-
+    
     public void init(Context context){
         this.context = context;
         preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);

@@ -14,11 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
 import com.test.evgeniy.tasksreminder.Dialogs.DialogCreateTask;
-import com.test.evgeniy.tasksreminder.Fragments.CalendarFragment;
+import com.test.evgeniy.tasksreminder.Fragments.DoneTaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.MainFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SomethingFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SplashFragment;
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity
     public void addTabs() {
         mainFragment = new MainFragment();
         pagerAdapter.addFragment(mainFragment, getResources().getString(R.string.tab_task));
-        pagerAdapter.addFragment(new CalendarFragment(), getResources().getString(R.string.tab_calendar));
+        pagerAdapter.addFragment(new DoneTaskFragment(), getResources().getString(R.string.tab_calendar));
         pagerAdapter.addFragment(new SomethingFragment(), getResources().getString(R.string.tab_something));
     }
 

@@ -9,13 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.test.evgeniy.tasksreminder.Adapters.CurrentTaskAdapter;
 import com.test.evgeniy.tasksreminder.R;
 
 
-public class CalendarFragment extends Fragment {
+public class DoneTaskFragment extends TaskFragment {
 
-    private RecyclerView rvDoneTask;
-    private RecyclerView.LayoutManager layoutManager;
+
 
 
     @Nullable
@@ -25,11 +25,11 @@ public class CalendarFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-        //rvDoneTask = (RecyclerView) container.findViewById(R.id.recycler_view_done_tasks);
-        //layoutManager = new LinearLayoutManager(getContext());
-      //  rvDoneTask.setLayoutManager(layoutManager);
-
-
+        recyclerView = (RecyclerView) container.findViewById(R.id.recycler_view_done_tasks);
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new CurrentTaskAdapter(this);
+        recyclerView.setAdapter(adapter);
 
         return v;
     }
