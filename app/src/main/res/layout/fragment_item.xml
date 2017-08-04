@@ -16,6 +16,16 @@
         android:orientation="horizontal">
 
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/cvTaskPriority"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@color/colorPrimary"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            />
+
+
         <TextView
             android:id="@+id/tvTaskTitle"
             android:layout_width="0dp"

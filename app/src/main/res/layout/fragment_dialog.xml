@@ -47,7 +47,7 @@
 
         android:layout_below="@+id/dialogTaskTitle"
         android:layout_alignRight="@+id/dialogTaskTitle"
-        tools:ignore="RtlHardcoded">
+       >
 
         <EditText
             android:layout_width="match_parent"
@@ -60,6 +60,14 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/spinnerAddTaskPriority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialogTaskDate"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
 
 
 

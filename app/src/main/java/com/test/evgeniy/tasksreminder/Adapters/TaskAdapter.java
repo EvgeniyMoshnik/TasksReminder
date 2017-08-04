@@ -10,6 +10,8 @@ import com.test.evgeniy.tasksreminder.Model.Item;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -52,11 +54,13 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         protected TextView title;
         protected TextView date;
+        protected CircleImageView circleImageView;
 
-        protected TaskViewHolder(View itemView, TextView title, TextView date) {
+        protected TaskViewHolder(View itemView, TextView title, TextView date, CircleImageView circleImageView) {
             super(itemView);
             this.title = title;
             this.date = date;
+            this.circleImageView = circleImageView;
         }
 
     }

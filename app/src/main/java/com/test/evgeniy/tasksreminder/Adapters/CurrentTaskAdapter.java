@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.test.evgeniy.tasksreminder.Fragments.MainFragment;
 import com.test.evgeniy.tasksreminder.Fragments.TaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.Utils;
 import com.test.evgeniy.tasksreminder.Model.Item;
@@ -15,14 +16,16 @@ import com.test.evgeniy.tasksreminder.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class CurrentTaskAdapter extends TaskAdapter {
 
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_SEPARATOR = 1;
 
-    public CurrentTaskAdapter(TaskFragment taskFragment) {
-        super(taskFragment);
+    public CurrentTaskAdapter(MainFragment mainFragment) {
+        super(mainFragment);
     }
 
     @Override
@@ -33,7 +36,8 @@ public class CurrentTaskAdapter extends TaskAdapter {
                 View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item, parent, false);
                 TextView title = (TextView) v.findViewById(R.id.tvTaskTitle);
                 TextView date = (TextView) v.findViewById(R.id.tvTaskDate);
-                return new TaskViewHolder(v, title, date);
+                CircleImageView cviPriority = (CircleImageView) v.findViewById(R.id.cvTaskPriority);
+                return new TaskViewHolder(v, title, date, cviPriority);
             default:
                 return null;
         }
@@ -52,6 +56,8 @@ public class CurrentTaskAdapter extends TaskAdapter {
             taskViewHolder.title.setText(task.getTitle());
             if (task.getDate() != 0) {
                 taskViewHolder.date.setText(Utils.getFullDate(task.getDate()));
+            } else {
+                taskViewHolder.date.setText(null);
             }
         }
 

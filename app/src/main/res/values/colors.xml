@@ -6,4 +6,17 @@
 
     <color name="colorSplashBackground">#f1e873</color>
     <color name="colorText">#ffffff</color>
+
+    <color name="priority_high">#f44336</color>
+    <color name="priority_normal">#3f51b5</color>
+    <color name="priority_low">#00bcd4</color>
+
+    <color name="priority_high_selected">#ef9a9a</color>
+    <color name="priority_normal_selected">#9fa8da</color>
+    <color name="priority_low_selected">#80deea</color>
+
+    <color name="grey_50">#FAFAFA</color>
+    <color name="grey_200">#EEEEEE</color>
+
+
 </resources>
