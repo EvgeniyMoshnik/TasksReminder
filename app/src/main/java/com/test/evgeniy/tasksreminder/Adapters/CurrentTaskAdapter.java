@@ -1,5 +1,6 @@
 package com.test.evgeniy.tasksreminder.Adapters;
 
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,12 +54,22 @@ public class CurrentTaskAdapter extends TaskAdapter {
             ModelTask task = (ModelTask) item;
             TaskViewHolder taskViewHolder = (TaskViewHolder) holder;
 
+            View itemView = taskViewHolder.itemView;
+            Resources resources = itemView.getResources();
+
             taskViewHolder.title.setText(task.getTitle());
             if (task.getDate() != 0) {
                 taskViewHolder.date.setText(Utils.getFullDate(task.getDate()));
             } else {
                 taskViewHolder.date.setText(null);
             }
+            itemView.setVisibility(View.VISIBLE);
+
+            itemView.setBackgroundColor(resources.getColor(R.color.grey_50));
+
+            taskViewHolder.title.setTextColor(resources.getColor(android.R.color.primary_text_light));
+            taskViewHolder.date.setTextColor(resources.getColor(android.R.color.secondary_text_light));
+            taskViewHolder.priority.setColorFilter(resources.getColor(task.getPriorityColor()));
         }
 
 

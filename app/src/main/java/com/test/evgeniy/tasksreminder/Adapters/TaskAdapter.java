@@ -54,13 +54,13 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         protected TextView title;
         protected TextView date;
-        protected CircleImageView circleImageView;
+        protected CircleImageView priority;
 
-        protected TaskViewHolder(View itemView, TextView title, TextView date, CircleImageView circleImageView) {
+        protected TaskViewHolder(View itemView, TextView title, TextView date, CircleImageView priority) {
             super(itemView);
             this.title = title;
             this.date = date;
-            this.circleImageView = circleImageView;
+            this.priority = priority;
         }
 
     }
