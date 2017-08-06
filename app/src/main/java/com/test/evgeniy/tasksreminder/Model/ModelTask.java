@@ -82,7 +82,6 @@ public class ModelTask implements Item {
     public int getPriority() {
         return priority;
     }
-
     public void setPriority(int priority) {
         this.priority = priority;
     }
