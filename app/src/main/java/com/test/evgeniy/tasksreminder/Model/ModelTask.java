@@ -6,7 +6,7 @@ import com.test.evgeniy.tasksreminder.R;
 public class ModelTask implements Item {
 
     public static final int STATUS_OVERDUE = 0;
-    public static final int STATUS_CURENT = 1;
+    public static final int STATUS_CURRENT = 1;
     public static final int STATUS_DONE = 2;
 
     public static final int PRIORITY_LOW = 0;
@@ -55,21 +55,21 @@ public class ModelTask implements Item {
     public int getPriorityColor() {
         switch (getPriority()) {
             case PRIORITY_HIGH:
-                if(getStatus() == STATUS_CURENT || getStatus() == STATUS_OVERDUE) {
-                    return R.color.priority_high;
+                if(getStatus() == STATUS_CURRENT || getStatus() == STATUS_OVERDUE) {
+                    return R.color.priority_high ;
                 }
                 else {
                     return R.color.priority_high_selected;
                 }
             case PRIORITY_NORMAL:
-                if (getStatus() == STATUS_CURENT || getStatus() == STATUS_OVERDUE) {
+                if (getStatus() == STATUS_CURRENT || getStatus() == STATUS_OVERDUE) {
                     return R.color.priority_normal;
                 }
                 else {
                     return R.color.priority_normal_selected;
                 }
             case PRIORITY_LOW:
-                if (getStatus() == STATUS_CURENT || getStatus() == STATUS_OVERDUE) {
+                if (getStatus() == STATUS_CURRENT || getStatus() == STATUS_OVERDUE) {
                     return R.color.priority_low;
                 }
                 else {
