@@ -18,17 +18,20 @@ import android.view.MenuItem;
 import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
 import com.test.evgeniy.tasksreminder.Dialogs.DialogCreateTask;
 import com.test.evgeniy.tasksreminder.Fragments.DoneTaskFragment;
-import com.test.evgeniy.tasksreminder.Fragments.MainFragment;
+import com.test.evgeniy.tasksreminder.Fragments.CurrentTaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SomethingFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SplashFragment;
+import com.test.evgeniy.tasksreminder.Fragments.TaskFragment;
 import com.test.evgeniy.tasksreminder.Model.ModelTask;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, DialogCreateTask.AddingTaskListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DialogCreateTask.AddingTaskListener,
+        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener {
 
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
-    MainFragment mainFragment;
+    TaskFragment currentTaskFragment;
+    TaskFragment doneTaskFragment;
     PagerTabAdapter pagerAdapter;
 
     @Override
@@ -95,9 +98,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void addTabs() {
-        mainFragment = new MainFragment();
-        pagerAdapter.addFragment(mainFragment, getResources().getString(R.string.tab_task));
-        pagerAdapter.addFragment(new DoneTaskFragment(), getResources().getString(R.string.tab_calendar));
+        currentTaskFragment = new CurrentTaskFragment();
+        doneTaskFragment = new DoneTaskFragment();
+        pagerAdapter.addFragment(currentTaskFragment, getResources().getString(R.string.tab_task));
+        pagerAdapter.addFragment(doneTaskFragment, getResources().getString(R.string.tab_calendar));
         pagerAdapter.addFragment(new SomethingFragment(), getResources().getString(R.string.tab_something));
     }
 
@@ -165,11 +169,21 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onTaskAdded(ModelTask newTask) {
-        mainFragment.addTask(newTask);
+        currentTaskFragment.addTask(newTask);
     }
 
     @Override
     public void onTaskAddingCancel() {
 
+    }
+
+    @Override
+    public void onTaskRestore(ModelTask modelTask) {
+        currentTaskFragment.addTask(modelTask);
+    }
+
+    @Override
+    public void onTaskDone(ModelTask modelTask) {
+        doneTaskFragment.addTask(modelTask);
     }
 }

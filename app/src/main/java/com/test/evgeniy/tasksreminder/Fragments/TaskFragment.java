@@ -1,9 +1,11 @@
 package com.test.evgeniy.tasksreminder.Fragments;
 
-import android.app.Fragment;
+//import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
 import com.test.evgeniy.tasksreminder.Adapters.CurrentTaskAdapter;
+import com.test.evgeniy.tasksreminder.Adapters.TaskAdapter;
 import com.test.evgeniy.tasksreminder.Model.ModelTask;
 
 
@@ -11,7 +13,7 @@ public abstract class TaskFragment extends Fragment {
 
     protected RecyclerView recyclerView;
     protected RecyclerView.LayoutManager layoutManager;
-    protected CurrentTaskAdapter adapter;
+    protected TaskAdapter adapter;
 
 
     public void addTask(ModelTask newTask){
@@ -32,4 +34,6 @@ public abstract class TaskFragment extends Fragment {
             adapter.addItem(newTask);
         }
     }
+
+    public abstract void moveTask(ModelTask modelTask);
 }
