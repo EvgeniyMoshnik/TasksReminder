@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
+import com.test.evgeniy.tasksreminder.Database.DBHelper;
 import com.test.evgeniy.tasksreminder.Dialogs.DialogCreateTask;
 import com.test.evgeniy.tasksreminder.Fragments.DoneTaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.CurrentTaskFragment;
@@ -30,9 +31,14 @@ public class MainActivity extends AppCompatActivity
 
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
+
     TaskFragment currentTaskFragment;
     TaskFragment doneTaskFragment;
     PagerTabAdapter pagerAdapter;
+
+     public DBHelper dbHelper;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,8 @@ public class MainActivity extends AppCompatActivity
 
         PreferenceHelper.getInstance().init(getApplicationContext());
         preferenceHelper = PreferenceHelper.getInstance();
+
+        dbHelper = new DBHelper(getApplicationContext());
 
 
         //set UI
@@ -169,7 +177,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onTaskAdded(ModelTask newTask) {
-        currentTaskFragment.addTask(newTask);
+        currentTaskFragment.addTask(newTask, true);
     }
 
     @Override
@@ -179,11 +187,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onTaskRestore(ModelTask modelTask) {
-        currentTaskFragment.addTask(modelTask);
+        currentTaskFragment.addTask(modelTask, false);
     }
 
     @Override
     public void onTaskDone(ModelTask modelTask) {
-        doneTaskFragment.addTask(modelTask);
+        doneTaskFragment.addTask(modelTask, false);
     }
 }

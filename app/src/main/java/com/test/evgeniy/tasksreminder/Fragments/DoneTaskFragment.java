@@ -10,8 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.test.evgeniy.tasksreminder.Adapters.DoneTaskAdapter;
+import com.test.evgeniy.tasksreminder.Database.DBHelper;
 import com.test.evgeniy.tasksreminder.Model.ModelTask;
 import com.test.evgeniy.tasksreminder.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DoneTaskFragment extends TaskFragment {
@@ -45,13 +49,24 @@ public class DoneTaskFragment extends TaskFragment {
 
         View v = inflater.inflate(R.layout.fragment_done_task, container, false);
 
-        recyclerView = (RecyclerView) container.findViewById(R.id.recycler_view_done_tasks);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_done_tasks);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         adapter = new DoneTaskAdapter(this);
         recyclerView.setAdapter(adapter);
 
         return v;
+    }
+
+    @Override
+    public void addTaskFromDB() {
+        List<ModelTask> tasks = new ArrayList<>();
+        tasks.addAll(activity.dbHelper.query().getTasks(DBHelper.SELECTION_STATUS + " OR "
+                + DBHelper.SELECTION_STATUS, new String[]{Integer.toString(ModelTask.STATUS_DONE)},
+                DBHelper.TASK_DATE_COLUMN ));
+        for (int i = 0; i < tasks.size(); i++) {
+            addTask(tasks.get(i), false);
+        }
     }
 
     @Override

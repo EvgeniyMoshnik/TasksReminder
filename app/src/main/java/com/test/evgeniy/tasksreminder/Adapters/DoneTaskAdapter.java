@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.test.evgeniy.tasksreminder.Fragments.DoneTaskFragment;
-import com.test.evgeniy.tasksreminder.Fragments.TaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.Utils;
 import com.test.evgeniy.tasksreminder.Model.Item;
 import com.test.evgeniy.tasksreminder.Model.ModelTask;
@@ -19,9 +18,7 @@ import com.test.evgeniy.tasksreminder.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * Created by Evgeniy on 08.08.2017.
- */
+
 
 public class DoneTaskAdapter extends TaskAdapter {
 
@@ -74,6 +71,8 @@ public class DoneTaskAdapter extends TaskAdapter {
                 @Override
                 public void onClick(View v) {
                     task.setStatus(ModelTask.STATUS_CURRENT);
+
+                    getTaskFragment().activity.dbHelper.update().status(task.getTimeStamp(), ModelTask.STATUS_CURRENT);
 
                     itemView.setBackgroundColor(resources.getColor(R.color.grey_50));
 
