@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     TaskFragment currentTaskFragment;
     TaskFragment doneTaskFragment;
     PagerTabAdapter pagerAdapter;
+
+    SearchView searchView;
 
      public DBHelper dbHelper;
 
@@ -92,6 +95,22 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        searchView = (SearchView) findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                currentTaskFragment.findTasks(newText);
+                doneTaskFragment.findTasks(newText);
+                return false;
+            }
+        });
     }
 
 
