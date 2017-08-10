@@ -76,7 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void moveTask(long timeStamp) {
+    public void removeTask(long timeStamp) {
         getWritableDatabase().delete(TASKS_TABLE, SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)});
     }
 

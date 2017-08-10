@@ -12,9 +12,12 @@
 
     <!-- dialog -->
     <string name="tittle_dialog">Create task</string>
-    <string name="positive_button">Create</string>
+    <string name="positive_button">OK</string>
     <string name="negative_button">Cancel</string>
     <string name="error_dialog">Please, enter the title</string>
+    
+    <string name="removing_message">Are you sure want to delete this task?</string>
+    <string name="removed">Removed</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
