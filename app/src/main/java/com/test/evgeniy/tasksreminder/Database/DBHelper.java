@@ -24,9 +24,11 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TASKS_TABLE_CREATE_SCRIPT = "CREATE TABLE " + TASKS_TABLE
             + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK_TITLE_COLUMN + " TEXT NOT NULL, "
             + TASK_DATE_COLUMN + " LONG, " + TASK_PRIORITY_COLUMN + " INTEGER, "
-            + TASK_STATUS_COLUMN + " INTEGER, " + TASK_TIME_STAMP_COLUMN + "LONG );";
+            + TASK_STATUS_COLUMN + " INTEGER, " + TASK_TIME_STAMP_COLUMN + " LONG);";
 
     public static final String SELECTION_STATUS = TASK_STATUS_COLUMN + " = ?";
+
+    public static final String SELECTION_TIME_STAMP = TASK_TIME_STAMP_COLUMN + " = ?";
 
     private QueryManager queryManager;
     private UpdateManager updateManager;
@@ -72,6 +74,10 @@ public class DBHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert(TASKS_TABLE, null, cv);
 
 
+    }
+
+    public void moveTask(long timeStamp) {
+        getWritableDatabase().delete(TASKS_TABLE, SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)});
     }
 
 }
