@@ -1,11 +1,15 @@
 package com.test.evgeniy.tasksreminder;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+
 import android.support.v7.widget.SearchView;
+
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
+import com.test.evgeniy.tasksreminder.Alarm.AlarmHelper;
 import com.test.evgeniy.tasksreminder.Database.DBHelper;
 import com.test.evgeniy.tasksreminder.Dialogs.DialogCreateTask;
 import com.test.evgeniy.tasksreminder.Fragments.DoneTaskFragment;
@@ -52,6 +57,8 @@ public class MainActivity extends AppCompatActivity
         preferenceHelper = PreferenceHelper.getInstance();
 
         dbHelper = new DBHelper(getApplicationContext());
+
+        AlarmHelper.getInstance().init(getApplicationContext());
 
 
         //set UI
@@ -97,7 +104,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        searchView = (SearchView) findViewById(R.id.search_view);
+        searchView = (SearchView) findViewById(R.id.search_view_task);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -213,4 +220,17 @@ public class MainActivity extends AppCompatActivity
     public void onTaskDone(ModelTask modelTask) {
         doneTaskFragment.addTask(modelTask, false);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.activityResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.activityPause();
+    }
 }
+

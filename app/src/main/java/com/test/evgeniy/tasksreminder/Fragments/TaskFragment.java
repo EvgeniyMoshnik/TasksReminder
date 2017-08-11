@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.test.evgeniy.tasksreminder.Adapters.TaskAdapter;
+import com.test.evgeniy.tasksreminder.Alarm.AlarmHelper;
 import com.test.evgeniy.tasksreminder.MainActivity;
 import com.test.evgeniy.tasksreminder.Model.Item;
 import com.test.evgeniy.tasksreminder.Model.ModelTask;
@@ -25,6 +26,8 @@ public abstract class TaskFragment extends Fragment {
 
     public MainActivity activity;
 
+    public AlarmHelper alarmHelper;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public abstract class TaskFragment extends Fragment {
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
         }
+        alarmHelper = AlarmHelper.getInstance();
 
         addTaskFromDB();
     }
@@ -97,6 +101,7 @@ public abstract class TaskFragment extends Fragment {
                         public void onViewDetachedFromWindow(View v) {
 
                             if (isRemoved[0]) {
+                                alarmHelper.removeAlarm(timeStamp);
                                 activity.dbHelper.removeTask(timeStamp);
                             }
                         }

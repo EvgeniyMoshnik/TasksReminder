@@ -25,13 +25,20 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
-                <android.support.v7.widget.SearchView
-                    android:id="@+id/search_view"
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="wrap_content">
 
-                    app:searchIcon="@drawable/ic_search_white_24dp"
-                    app:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+                    <android.support.v7.widget.SearchView
+                        android:id="@+id/search_view_task"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        app:searchIcon="@drawable/ic_search_white_24dp"
+                        app:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+
+                </RelativeLayout>
+
 
             </android.support.v7.widget.Toolbar>
 

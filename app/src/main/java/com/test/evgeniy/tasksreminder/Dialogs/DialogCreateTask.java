@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import com.test.evgeniy.tasksreminder.Alarm.AlarmHelper;
 import com.test.evgeniy.tasksreminder.Fragments.Utils;
 import com.test.evgeniy.tasksreminder.Model.ModelTask;
 import com.test.evgeniy.tasksreminder.R;
@@ -101,8 +102,13 @@ public class DialogCreateTask extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
 
                         task.setTitle(etTitle.getText().toString());
+                        task.setStatus(ModelTask.STATUS_CURRENT);
                         if (etDate.length() != 0 || etTime.length() != 0 ) {
                             task.setDate(calendar.getTimeInMillis());
+
+                            AlarmHelper alarmHelper = AlarmHelper.getInstance();
+                            alarmHelper.setAlarm(task);
+
                         }
                         task.setStatus(ModelTask.STATUS_CURRENT);
                         addingTaskListener.onTaskAdded(task);
