@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.test.evgeniy.tasksreminder.Fragments.TaskFragment;
 import com.test.evgeniy.tasksreminder.Model.Item;
+import com.test.evgeniy.tasksreminder.Model.ModelSeparator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,11 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
     private List<Item> items;
 
     private TaskFragment taskFragment;
+
+    public boolean containsSeparatorOverdue;
+    public boolean containsSeparatorToday;
+    public boolean containsSeparatorTomorrow;
+    public boolean containsSeparatorFuture;
 
     public TaskAdapter(TaskFragment taskFragment) {
         items = new ArrayList<>();
@@ -42,6 +48,12 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
         if(location >= 0 && location <= getItemCount() - 1) {
             items.remove(location);
             notifyItemRemoved(location);
+
+            if (location >= 0 && location <= getItemCount() - 1) {
+                if (!getItem(location).isTask() && !getItem(location - 1).isTask() ) {
+                    ModelSeparator separator = (ModelSeparator) getItem(location -1);
+                }
+            }
         }
     }
 
@@ -70,6 +82,16 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
             this.priority = priority;
         }
 
+    }
+
+    protected class SeparatorViewHolder extends RecyclerView.ViewHolder {
+
+        protected TextView type;
+
+        public SeparatorViewHolder(View itemView, TextView type) {
+            super(itemView);
+            this.type = type;
+        }
     }
 
     public TaskFragment getTaskFragment() {
