@@ -45,19 +45,24 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void removeItem(int location) {
-        if(location >= 0 && location <= getItemCount() - 1) {
+        if (location >= 0 && location <= getItemCount() - 1) {
             items.remove(location);
             notifyItemRemoved(location);
 
             if (location >= 0 && location <= getItemCount() - 1) {
-                if (!getItem(location).isTask() && !getItem(location - 1).isTask() ) {
-                    ModelSeparator separator = (ModelSeparator) getItem(location -1);
+                if (!getItem(location).isTask() && !getItem(location - 1).isTask()) {
+                    ModelSeparator separator = (ModelSeparator) getItem(location - 1);
                     checkSeparators(separator.getType());
                     items.remove(location - 1);
                     notifyItemRemoved(location - 1);
                 }
             } else if (getItemCount() - 1 >= 0 && !getItem(getItemCount() - 1).isTask()) {
+                ModelSeparator separator = (ModelSeparator) getItem(location - 1);
+                checkSeparators(separator.getType());
 
+                int locationTemp = getItemCount() - 1;
+                items.remove(locationTemp);
+                notifyItemRemoved(locationTemp);
             }
         }
     }
@@ -86,6 +91,14 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (getItemCount() != 0) {
             items = new ArrayList<>();
             notifyDataSetChanged();
+
+            containsSeparatorOverdue = false;
+
+            containsSeparatorToday = false;
+
+            containsSeparatorTomorrow = false;
+
+            containsSeparatorFuture = false;
         }
     }
 
