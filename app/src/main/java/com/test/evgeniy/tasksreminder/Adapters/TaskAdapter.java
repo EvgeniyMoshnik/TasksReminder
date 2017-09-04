@@ -57,7 +57,12 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
                     notifyItemRemoved(location - 1);
                 }
             } else if (getItemCount() - 1 >= 0 && !getItem(getItemCount() - 1).isTask()) {
+                ModelSeparator separator = (ModelSeparator) getItem(getItemCount() - 1);
+                checkSeparators(separator.getType());
 
+                int locationTemp = getItemCount() - 1;
+                items.remove(locationTemp);
+                notifyItemRemoved(locationTemp);
             }
         }
     }
@@ -86,6 +91,10 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (getItemCount() != 0) {
             items = new ArrayList<>();
             notifyDataSetChanged();
+            containsSeparatorOverdue = false;
+            containsSeparatorToday = false;
+            containsSeparatorTomorrow = false;
+            containsSeparatorFuture = false;
         }
     }
 
