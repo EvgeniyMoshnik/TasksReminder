@@ -22,6 +22,7 @@ import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
 import com.test.evgeniy.tasksreminder.Alarm.AlarmHelper;
 import com.test.evgeniy.tasksreminder.Database.DBHelper;
 import com.test.evgeniy.tasksreminder.Dialogs.DialogCreateTask;
+import com.test.evgeniy.tasksreminder.Dialogs.EditTaskDialogFragment;
 import com.test.evgeniy.tasksreminder.Fragments.DoneTaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.CurrentTaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SomethingFragment;
@@ -31,7 +32,8 @@ import com.test.evgeniy.tasksreminder.Model.ModelTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DialogCreateTask.AddingTaskListener,
-        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener {
+        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener,
+        EditTaskDialogFragment.EditingTaskListener {
 
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
@@ -229,6 +231,11 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
         MyApplication.activityPause();
+    }
+
+    @Override
+    public void onTaskEdited(ModelTask updatedTask) {
+
     }
 }
 

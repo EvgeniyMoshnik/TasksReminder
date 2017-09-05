@@ -12,6 +12,7 @@
 
     <!-- dialog -->
     <string name="tittle_dialog">Create task</string>
+    <string name="dialog_editing_title">Editing task</string>
     <string name="positive_button">OK</string>
     <string name="negative_button">Cancel</string>
     <string name="error_dialog">Please, enter the title</string>

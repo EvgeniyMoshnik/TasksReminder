@@ -122,7 +122,7 @@ public class CurrentTaskFragment extends TaskFragment {
             }
 
             if (separator != null) {
-                adapter.addItem(position -1, separator);
+                adapter.addItem(position - 1, separator);
             }
 
             adapter.addItem(position, newTask);
