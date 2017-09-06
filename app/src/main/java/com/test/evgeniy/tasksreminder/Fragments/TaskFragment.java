@@ -1,6 +1,7 @@
 package com.test.evgeniy.tasksreminder.Fragments;
 
 
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.View;
 
 import com.test.evgeniy.tasksreminder.Adapters.TaskAdapter;
 import com.test.evgeniy.tasksreminder.Alarm.AlarmHelper;
+import com.test.evgeniy.tasksreminder.Dialogs.EditTaskDialogFragment;
 import com.test.evgeniy.tasksreminder.MainActivity;
 import com.test.evgeniy.tasksreminder.Model.Item;
 import com.test.evgeniy.tasksreminder.Model.ModelTask;
@@ -42,6 +44,10 @@ public abstract class TaskFragment extends Fragment {
     }
 
     public abstract void addTask(ModelTask newTask, boolean saveToDB);
+
+    public void updateTask(ModelTask task) {
+        adapter.updateTask(task);
+    }
 
     public void removeTaskDialog(final int location) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -99,6 +105,11 @@ public abstract class TaskFragment extends Fragment {
                     });
         }
         builder.show();
+    }
+
+    public void showTaskEditDialog(ModelTask task) {
+        DialogFragment editingTaskDialog = EditTaskDialogFragment.newInstance(task);
+        editingTaskDialog.show(getActivity().getFragmentManager(), "EditTaskDialogFragment");
     }
 
     public abstract void findTasks(String title);

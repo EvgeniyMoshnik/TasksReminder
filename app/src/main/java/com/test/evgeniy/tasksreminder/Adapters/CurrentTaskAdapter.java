@@ -85,6 +85,14 @@ public class CurrentTaskAdapter extends TaskAdapter {
             taskViewHolder.priority.setColorFilter(resources.getColor(task.getPriorityColor()));
             taskViewHolder.priority.setImageResource(R.drawable.ic_checkbox_blank_circle_white_48dp);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getTaskFragment().showTaskEditDialog(task);
+
+                }
+            });
+
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
