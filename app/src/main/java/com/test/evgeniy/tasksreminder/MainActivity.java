@@ -1,6 +1,7 @@
 package com.test.evgeniy.tasksreminder;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Ads.showBanner(this);
 
         PreferenceHelper.getInstance().init(getApplicationContext());
         preferenceHelper = PreferenceHelper.getInstance();
@@ -135,7 +138,7 @@ public class MainActivity extends AppCompatActivity
         currentTaskFragment = new CurrentTaskFragment();
         doneTaskFragment = new DoneTaskFragment();
         pagerAdapter.addFragment(currentTaskFragment, getResources().getString(R.string.tab_task));
-        pagerAdapter.addFragment(doneTaskFragment, getResources().getString(R.string.tab_calendar));
+        pagerAdapter.addFragment(doneTaskFragment, getResources().getString(R.string.tab_done_task));
         pagerAdapter.addFragment(new SomethingFragment(), getResources().getString(R.string.tab_something));
     }
 
@@ -199,6 +202,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+
     }
 
     @Override

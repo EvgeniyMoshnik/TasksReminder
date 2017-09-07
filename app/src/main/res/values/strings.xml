@@ -26,7 +26,7 @@
     <string name="don_t_show_splash">Don\'t show splash</string>
 
     <string name="tab_task">TASK</string>
-    <string name="tab_calendar">CALENDAR</string>
+    <string name="tab_done_task">DONE TASK</string>
     <string name="tab_something">SOMETHING</string>
 
     <string name="task_title">Title</string>
@@ -39,6 +39,8 @@
     <string name="separator_today">Today</string>
     <string name="separator_tomorrow">Tomorrow</string>
     <string name="separator_future">Future</string>
+    
+    <string name="banner_app_id">ca-app-pub-9732137721626213~4036431407</string>
 
 
 </resources>
