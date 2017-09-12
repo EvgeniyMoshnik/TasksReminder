@@ -40,7 +40,8 @@
     <string name="separator_tomorrow">Tomorrow</string>
     <string name="separator_future">Future</string>
     
-    <string name="banner_app_id">ca-app-pub-9732137721626213~4036431407</string>
+    <string name="banner_add_unit_id">ca-app-pub-9732137721626213~4036431407</string>
+    <string name="admob_app_id">ca-app-pub-9732137721626213~4036431407</string>
 
 
 </resources>

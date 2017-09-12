@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.MobileAds;
 import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
 import com.test.evgeniy.tasksreminder.Alarm.AlarmHelper;
 import com.test.evgeniy.tasksreminder.Database.DBHelper;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, getResources().getString(R.string.admob_app_id) );
 
         Ads.showBanner(this);
 
