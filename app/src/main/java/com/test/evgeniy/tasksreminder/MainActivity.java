@@ -1,6 +1,7 @@
 package com.test.evgeniy.tasksreminder;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -18,10 +19,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.MobileAds;
 import com.test.evgeniy.tasksreminder.Adapters.PagerTabAdapter;
 import com.test.evgeniy.tasksreminder.Alarm.AlarmHelper;
 import com.test.evgeniy.tasksreminder.Database.DBHelper;
 import com.test.evgeniy.tasksreminder.Dialogs.DialogCreateTask;
+import com.test.evgeniy.tasksreminder.Dialogs.EditTaskDialogFragment;
 import com.test.evgeniy.tasksreminder.Fragments.DoneTaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.CurrentTaskFragment;
 import com.test.evgeniy.tasksreminder.Fragments.SomethingFragment;
@@ -31,7 +34,8 @@ import com.test.evgeniy.tasksreminder.Model.ModelTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DialogCreateTask.AddingTaskListener,
-        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener {
+        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener,
+        EditTaskDialogFragment.EditingTaskListener {
 
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
@@ -50,6 +54,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, getResources().getString(R.string.admob_app_id) );
+
+        Ads.showBanner(this);
 
         PreferenceHelper.getInstance().init(getApplicationContext());
         preferenceHelper = PreferenceHelper.getInstance();
@@ -133,7 +141,7 @@ public class MainActivity extends AppCompatActivity
         currentTaskFragment = new CurrentTaskFragment();
         doneTaskFragment = new DoneTaskFragment();
         pagerAdapter.addFragment(currentTaskFragment, getResources().getString(R.string.tab_task));
-        pagerAdapter.addFragment(doneTaskFragment, getResources().getString(R.string.tab_calendar));
+        pagerAdapter.addFragment(doneTaskFragment, getResources().getString(R.string.tab_done_task));
         pagerAdapter.addFragment(new SomethingFragment(), getResources().getString(R.string.tab_something));
     }
 
@@ -200,6 +208,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+
+    }
+
+    @Override
     public void onTaskAdded(ModelTask newTask) {
         currentTaskFragment.addTask(newTask, true);
     }
@@ -229,6 +242,12 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
         MyApplication.activityPause();
+    }
+
+    @Override
+    public void onTaskEdited(ModelTask updatedTask) {
+        currentTaskFragment.updateTask(updatedTask);
+        dbHelper.update().task(updatedTask);
     }
 }
 
