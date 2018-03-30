@@ -15,7 +15,6 @@ public class ModelTask implements Item {
     public static final int PRIORITY_NORMAL = 1;
     public static final int PRIORITY_HIGH = 2;
 
-    public static final String[] PRIORITY_LEVELS = {"Low Priority", "Normal Priority", "High Priority"};
 
     private String title;
     private long date;

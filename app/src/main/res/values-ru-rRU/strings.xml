@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tasks Reminder</string>
+    <string name="action_settings">Настройки</string>
+    <string name="done">СДЕЛАНО</string>
+    <string name="enter_task">Введите заголовок</string>
+    <string name="enter_time">Введите время</string>
+    <string name="enter_date">Введите дату</string>
+    <string name="tittle_dialog">Создать задачу</string>
+    <string name="dialog_editing_title">Редактирование задачи</string>
+    <string name="positive_button">Да</string>
+    <string name="negative_button">Отмена</string>
+    <string name="error_dialog">Пожалуйста, введите задачу</string>
+    <string name="removing_message">Вы уверены что хотите удалить эту задачу?</string>
+    <string name="removed">Удалено</string>
+    <string name="don_t_show_splash">Не показывать заставку</string>
+    <string name="tab_task">ТЕКУЩИЕ</string>
+    <string name="tab_done_task">ВЫПОЛНЕННЫЕ</string>
+    <string name="task_title">Заголовок</string>
+    <string name="task_date">Дата</string>
+    <string name="task_time">Время</string>
+    <string name="separator_overdue">Просроченные</string>
+    <string name="separator_today">Сегодня</string>
+    <string name="separator_tomorrow">Завтра</string>
+    <string name="separator_future">Будущие</string>
+
+    <string-array name="level_priority">
+        <item>Низкий</item>
+        <item>Средний</item>
+        <item>Высокий</item>
+    </string-array>
+</resources>
