@@ -75,11 +75,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
         getWritableDatabase().insert(TASKS_TABLE, null, cv);
 
+        //close db
+
+
+
 
     }
 
     public void removeTask(long timeStamp) {
         getWritableDatabase().delete(TASKS_TABLE, SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)});
+        //close db
     }
 
 }

@@ -93,6 +93,8 @@ public class CurrentTaskAdapter extends TaskAdapter {
                 }
             });
 
+
+
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {

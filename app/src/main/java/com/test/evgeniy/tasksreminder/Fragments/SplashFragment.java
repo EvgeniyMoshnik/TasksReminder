@@ -47,12 +47,13 @@ public class SplashFragment extends Fragment {
             if (getActivity() != null) {
                 fragmentManager = getActivity().getFragmentManager();
                 fragmentManager.popBackStack();
+              //  fragmentManager.beginTransaction()
+                //        .hide(fragmentManager.findFragmentByTag("splash"))
+                //        .commit();
             }
 
 
-           // fragmentManager.beginTransaction()
-             //       .hide(fragmentManager.findFragmentByTag("splash"))
-                //    .commit();
+
             return null;
         }
     }

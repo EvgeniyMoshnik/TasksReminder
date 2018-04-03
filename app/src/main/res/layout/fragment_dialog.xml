@@ -46,8 +46,7 @@
         android:layout_marginTop="16dp"
 
         android:layout_below="@+id/dialogTaskTitle"
-        android:layout_alignRight="@+id/dialogTaskTitle"
-       >
+        android:layout_alignRight="@+id/dialogTaskTitle">
 
         <EditText
             android:layout_width="match_parent"
@@ -55,8 +54,7 @@
             android:textSize="16sp"
             android:inputType="none"
             android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            />
+            android:cursorVisible="false" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -68,7 +66,5 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"/>
-
-
 
 </RelativeLayout>

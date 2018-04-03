@@ -50,10 +50,10 @@ public abstract class TaskFragment extends Fragment {
     }
 
     public void removeTaskDialog(final int location) {
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setMessage(R.string.removing_message);
-
         Item item = adapter.getItem(location);
 
         if (item.isTask()) {

@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:clickable="true"
-    android:background="@color/grey_50">
+    android:background="?android:attr/selectableItemBackground"
+    android:focusable="true">
 
 
     <LinearLayout
